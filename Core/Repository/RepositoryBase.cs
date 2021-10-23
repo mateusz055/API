@@ -7,20 +7,21 @@ using System.Data.SqlClient;
 using MongoDB.Driver.Core.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using Core.Models;
 
 namespace Core.Repository
 {
     public class RepositoryBase
     {
-        private readonly string _connectionString;
-        public RepositoryBase(IOptions<Models.DatabaseConfigModel> options)
+        private readonly DatabaseConfigModel _databaseConfigModel;
+        public RepositoryBase(DatabaseConfigModel databaseConfigModel)
         {
-            _connectionString = Convert.ToString(options);
+            _databaseConfigModel = databaseConfigModel;
         }
 
-        public void ConnectionOpen(Action<SqlConnection> action)
+        protected void ConnectionOpen(Action<SqlConnection> action)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SqlConnection connection = new SqlConnection(_databaseConfigModel.ConnectionString))
             {
                 connection.Open();
                 action(connection);

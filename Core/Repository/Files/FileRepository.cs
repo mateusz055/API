@@ -7,27 +7,28 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Core.Models;
+using Core.Interfaces;
 
 namespace Core.Repository.Files
 {
-    public class FileRepository : RepositoryBase
+    public class FileRepository : RepositoryBase, IFileRepository
     { 
-        public FileRepository(IOptions<DatabaseConfigModel> options): base(options)
+        public FileRepository(DatabaseConfigModel databaseConfigModel): base(databaseConfigModel)
         {
 
         }
         public void GetAllRecords() 
         {
-            ConnectionOpen(SqlAction);
+            ConnectionOpen(GetPersons);
             
         }
-        private void SqlAction(SqlConnection connection)
+        private void GetPersons(SqlConnection connection)
         {
-            SqlCommand command = new SqlCommand("SELECT * FROM dbo.Persons",connection);
+            SqlCommand command = new SqlCommand("SELECT * FROM persons",connection);
             SqlDataReader dataReader = command.ExecuteReader();
             while(dataReader.Read())
             {
-                Console.WriteLine(dataReader.GetValue(0));
+                var s = dataReader.GetValue(1);
             }
         }
     }
