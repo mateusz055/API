@@ -13,15 +13,15 @@ namespace Core.Repository
 {
     public class RepositoryBase
     {
-        private readonly DatabaseConfigModel _databaseConfigModel;
-        public RepositoryBase(DatabaseConfigModel databaseConfigModel)
+        private readonly DatabaseConfig _databaseConfig;
+        public RepositoryBase(IOptions<DatabaseConfig> databaseConfig)
         {
-            _databaseConfigModel = databaseConfigModel;
+            _databaseConfig = databaseConfig.Value;
         }
 
         protected void ConnectionOpen(Action<SqlConnection> action)
         {
-            using (SqlConnection connection = new SqlConnection(_databaseConfigModel.ConnectionString))
+            using (SqlConnection connection = new SqlConnection(_databaseConfig.ConectionString))
             {
                 connection.Open();
                 action(connection);

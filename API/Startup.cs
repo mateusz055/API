@@ -32,8 +32,7 @@ namespace API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
             });
-            services.Configure<PositionOptions>(Configuration.GetSection(
-                                       DatabaseConfig.Position));
+            services.Configure<DatabaseConfig>(Configuration.GetSection("DatabaseConfig"));
             
         }
 

@@ -13,7 +13,7 @@ namespace Core.Repository.Files
 {
     public class FileRepository : RepositoryBase, IFileRepository
     { 
-        public FileRepository(DatabaseConfigModel databaseConfigModel): base(databaseConfigModel)
+        public FileRepository(IOptions<DatabaseConfig> databaseConfig): base(databaseConfig)
         {
 
         }

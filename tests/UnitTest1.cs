@@ -19,20 +19,10 @@ namespace tests
         [Test]
         public void Test1()
         {
-            DatabaseConfigModel databaseConfigModel = new DatabaseConfigModel();
-            databaseConfigModel.ConnectionString = @"Server=DESKTOP-AL998SL\SQLEXPRESS;Database=files;Trusted_Connection=True;";
-            FileRepository fileRepository = new FileRepository(databaseConfigModel);
+           
+           
+            FileRepository fileRepository = new FileRepository(new DatabaseConfig() {ConectionString= @"Server=DESKTOP-AL998SL\SQLEXPRESS;Database=files;Trusted_Connection=True;" });
             fileRepository.GetAllRecords();
-        }
-        [Test]
-        public void Test2()
-        {
-            using (SqlConnection connection = new SqlConnection(@"Server=DESKTOP-AL998SL\SQLEXPRESS;Database=files;Trusted_Connection=True;"))
-            {
-                SqlCommand command = new SqlCommand("SELECT * FROM persons", connection);
-                command.Connection.Open();
-                command.ExecuteNonQuery();
-            }
         }
     }
 }

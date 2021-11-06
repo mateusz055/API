@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
-    class DatabaseConfig
+    public class DatabaseConfig
     {
+        public string ConectionString { get; set; }
     }
 }
