@@ -19,9 +19,9 @@ namespace tests
         [Test]
         public void Test1()
         {
-           
-           
-            FileRepository fileRepository = new FileRepository(new DatabaseConfig() {ConectionString= @"Server=DESKTOP-AL998SL\SQLEXPRESS;Database=files;Trusted_Connection=True;" });
+
+            var databaseConfig = Options.Create(new DatabaseConfig() { ConectionString = @"Server=DESKTOP-AL998SL\SQLEXPRESS;Database=files;Trusted_Connection=True;" });
+            FileRepository fileRepository = new FileRepository(databaseConfig);
             fileRepository.GetAllRecords();
         }
     }

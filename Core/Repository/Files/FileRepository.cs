@@ -12,21 +12,22 @@ using Core.Interfaces;
 namespace Core.Repository.Files
 {
     public class FileRepository : RepositoryBase, IFileRepository
-    { 
-        public FileRepository(IOptions<DatabaseConfig> databaseConfig): base(databaseConfig)
+    {
+        public FileRepository(IOptions<DatabaseConfig> databaseConfig) : base(databaseConfig)
         {
 
         }
-        public void GetAllRecords() 
+        public void GetAllRecords()
         {
             ConnectionOpen(GetPersons);
-            
+
         }
-        private void GetPersons(SqlConnection connection)
+        private async void GetPersons(SqlConnection connection)
         {
-            SqlCommand command = new SqlCommand("SELECT * FROM persons",connection);
-            SqlDataReader dataReader = command.ExecuteReader();
-            while(dataReader.Read())
+            SqlCommand command = new SqlCommand("SELECT * FROM persons", connection);
+
+            SqlDataReader dataReader = await command.ExecuteReaderAsync();
+            while (dataReader.Read())
             {
                 var s = dataReader.GetValue(1);
             }
