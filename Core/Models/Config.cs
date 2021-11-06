@@ -8,7 +8,7 @@ namespace Core.Models
 {
     class Config
     {
-        DatabaseConfigModel databaseConfigModel;
+        DatabaseConfig databaseConfig;
         
     }
 }
