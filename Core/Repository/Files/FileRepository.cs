@@ -22,15 +22,17 @@ namespace Core.Repository.Files
             await ConnectionOpen(GetPersons);
 
         }
-        private void GetPersons(SqlConnection connection)
+        private List<string> GetPersons(SqlConnection connection)
         {
+            var fileslist = new List<string>();
             SqlCommand command = new SqlCommand("SELECT * FROM Files", connection);
 
             SqlDataReader dataReader = command.ExecuteReader();
             while (dataReader.Read())
             {
-                var s = dataReader.GetValue(1);
+                fileslist.Add(dataReader.GetValue(1).ToString());           
             }
+            return fileslist;
         }
     }
 
