@@ -19,13 +19,16 @@ namespace Core.Repository
             _databaseConfig = databaseConfig.Value;
         }
 
-        protected void ConnectionOpen(Action<SqlConnection> action)
+        protected async Task ConnectionOpen(Func<SqlConnection,FilesModel> action)
         {
-            using (SqlConnection connection = new SqlConnection(_databaseConfig.ConectionString))
+            await Task.Run(()=>
             {
-                connection.Open();
-                action(connection);
-            }
+                using (SqlConnection connection = new SqlConnection(_databaseConfig.ConectionString))
+                {
+                    connection.Open();
+                    action(connection);
+                }
+            });
         }
     }
 }

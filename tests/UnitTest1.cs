@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using NUnit.Framework;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace tests
 {
@@ -17,12 +18,12 @@ namespace tests
         }
 
         [Test]
-        public void Test1()
+        public async Task test1()
         {
 
             var databaseConfig = Options.Create(new DatabaseConfig() { ConectionString = @"Server=DESKTOP-AL998SL\SQLEXPRESS;Database=files;Trusted_Connection=True;" });
             FileRepository fileRepository = new FileRepository(databaseConfig);
-            fileRepository.GetAllRecords();
+            await fileRepository.GetAllRecords();
         }
     }
 }

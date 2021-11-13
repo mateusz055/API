@@ -9,6 +9,6 @@ namespace Core.Interfaces
 {
     public interface IFileRepository
     {
-        void GetAllRecords();
+         Task GetAllRecords();
     }
 }

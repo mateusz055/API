@@ -17,16 +17,16 @@ namespace Core.Repository.Files
         {
 
         }
-        public void GetAllRecords()
+        public async Task GetAllRecords()
         {
-            ConnectionOpen(GetPersons);
+            await ConnectionOpen(GetPersons);
 
         }
-        private async void GetPersons(SqlConnection connection)
+        private void GetPersons(SqlConnection connection)
         {
-            SqlCommand command = new SqlCommand("SELECT * FROM persons", connection);
+            SqlCommand command = new SqlCommand("SELECT * FROM Files", connection);
 
-            SqlDataReader dataReader = await command.ExecuteReaderAsync();
+            SqlDataReader dataReader = command.ExecuteReader();
             while (dataReader.Read())
             {
                 var s = dataReader.GetValue(1);
