@@ -19,12 +19,12 @@ namespace Core.Repository.Files
         }
         public async Task GetAllRecords()
         {
-            await ConnectionOpen(GetPersons);
+            await ConnectionOpen<File>(GetPersons);
 
         }
-        private List<string> GetPersons(SqlConnection connection)
+        private List<File> GetPersons(SqlConnection connection)
         {
-            var fileslist = new List<string>();
+            var fileslist = new List<File>();
             SqlCommand command = new SqlCommand("SELECT * FROM Files", connection);
 
             SqlDataReader dataReader = command.ExecuteReader();

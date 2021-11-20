@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
-    class FilesModel
+    class File
     {
         public int id { get; set; }
         public string PersonName { get; set; }
