@@ -10,6 +10,6 @@ namespace Core.Interfaces
 {
     public interface IFileRepository
     {
-        async Task<List<File>> GetAll();
+         Task<List<File>> GetAll();
     }
 }
