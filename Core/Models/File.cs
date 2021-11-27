@@ -8,8 +8,10 @@ namespace Core.Models
 {
     class File
     {
-        public int id { get; set; }
-        public string PersonName { get; set; }
-        public string Addres { get; set; }
+        public int Id { get; set; }
+        public string Filenames { get; set; }
+        public string Size { get; set; }
+
+        public string Type { get; set; }
     }
 }

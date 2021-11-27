@@ -17,9 +17,9 @@ namespace Core.Repository.Files
         {
 
         }
-        public async Task GetAll()
+        public async Task<List<File>> GetAll()
         {
-            await ConnectionOpen<File>(GetPersons);
+            return await ConnectionOpen<File>(GetPersons);
             
         }
         private List<File> GetPersons(SqlConnection connection)
@@ -29,12 +29,14 @@ namespace Core.Repository.Files
 
             SqlDataReader dataReader = command.ExecuteReader();
             while (dataReader.Read())
-            {
-                // fileslist.Add(dataReader.GetValue(1).ToString());
-                File file = new File();
-                file.id = (int)dataReader.GetValue(0);
-                file.PersonName = (string)dataReader.GetValue(1);
-                fileslist.Add(file);
+            {               
+                fileslist.Add(new File()
+                {
+                    Id = (int)dataReader.GetValue(0),
+                    Filenames = (string)dataReader.GetValue(1),
+                    Size = (string)dataReader.GetValue(2),
+                    Type = (string)dataReader.GetValue(3)
+                });
             }
             return fileslist;
         }

@@ -1,4 +1,5 @@
-﻿using Core.Repository.Files;
+﻿using Core.Models;
+using Core.Repository.Files;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Core.Interfaces
 {
     public interface IFileRepository
     {
-         Task GetAll();
+        async Task<List<File>> GetAll();
     }
 }
