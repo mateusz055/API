@@ -19,10 +19,10 @@ namespace Core.Repository
             _databaseConfig = databaseConfig.Value;
         }
 
-        protected  Task<List<TResult>> ConnectionOpen<TResult>(Func<SqlConnection,List<TResult>> action)
+        protected async Task<List<TResult>> ConnectionOpen<TResult>(Func<SqlConnection,List<TResult>> action)
             
         {
-            return Task.Run(()=>
+            return await Task.Run(()=>
             {
                 using (SqlConnection connection = new SqlConnection(_databaseConfig.ConectionString))
                 {

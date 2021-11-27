@@ -17,10 +17,10 @@ namespace Core.Repository.Files
         {
 
         }
-        public async Task GetAllRecords()
+        public async Task GetAll()
         {
             await ConnectionOpen<File>(GetPersons);
-
+            
         }
         private List<File> GetPersons(SqlConnection connection)
         {
@@ -30,7 +30,11 @@ namespace Core.Repository.Files
             SqlDataReader dataReader = command.ExecuteReader();
             while (dataReader.Read())
             {
-                fileslist.Add(dataReader.GetValue(1).ToString());           
+                // fileslist.Add(dataReader.GetValue(1).ToString());
+                File file = new File();
+                file.id = (int)dataReader.GetValue(0);
+                file.PersonName = (string)dataReader.GetValue(1);
+                fileslist.Add(file);
             }
             return fileslist;
         }

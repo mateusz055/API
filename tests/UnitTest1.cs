@@ -23,7 +23,7 @@ namespace tests
 
             var databaseConfig = Options.Create(new DatabaseConfig() { ConectionString = @"Server=DESKTOP-AL998SL\SQLEXPRESS;Database=files;Trusted_Connection=True;" });
             FileRepository fileRepository = new FileRepository(databaseConfig);
-            await fileRepository.GetAllRecords();
+            await fileRepository.GetAll();
         }
     }
 }
