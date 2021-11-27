@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Interfaces.Services
 {
-    interface IFileServices
+    interface IFileService
     {
     }
 }

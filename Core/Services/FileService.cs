@@ -16,9 +16,9 @@ namespace Core.Services
             _fileRepository = fileRepository;
         }
 
-        public List<File> GetAll()
+        public async Task<List<File>> GetAll()
         {
-            return _fileRepository.GetAll();
+            return await _fileRepository.GetAll();
         }
     }
 }
