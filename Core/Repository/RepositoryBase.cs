@@ -24,7 +24,7 @@ namespace Core.Repository
         {
             return await Task.Run(()=>
             {
-                using (SqlConnection connection = new SqlConnection(_databaseConfig.ConectionString))
+                using (SqlConnection connection = new SqlConnection(_databaseConfig.ConnectionString))
                 {
                     connection.Open();
                     var file = action(connection);

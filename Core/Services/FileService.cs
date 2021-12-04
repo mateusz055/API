@@ -1,4 +1,5 @@
 ﻿using Core.Interfaces;
+using Core.Interfaces.Services;
 using Core.Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Core.Services
 {
-    class FileService
+    public class FileService : IFileService
     {
         private readonly IFileRepository _fileRepository;
         public FileService(IFileRepository fileRepository)

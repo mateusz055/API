@@ -21,7 +21,7 @@ namespace tests
         public async Task test1()
         {
 
-            var databaseConfig = Options.Create(new DatabaseConfig() { ConectionString = @"Server=DESKTOP-AL998SL\SQLEXPRESS;Database=files;Trusted_Connection=True;" });
+            var databaseConfig = Options.Create(new DatabaseConfig() { ConnectionString = @"Server=DESKTOP-AL998SL\SQLEXPRESS;Database=files;Trusted_Connection=True;" });
             FileRepository fileRepository = new FileRepository(databaseConfig);           
             var f =await fileRepository.GetAll();
         }

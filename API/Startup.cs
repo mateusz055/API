@@ -1,4 +1,8 @@
+using Core.Interfaces;
+using Core.Interfaces.Services;
 using Core.Models;
+using Core.Repository.Files;
+using Core.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,6 +37,9 @@ namespace API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
             });
             services.Configure<DatabaseConfig>(Configuration.GetSection("DatabaseConfig"));
+
+            services.AddScoped<IFileRepository,FileRepository>();
+            services.AddScoped<IFileService, FileService>();
             
         }
 

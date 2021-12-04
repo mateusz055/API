@@ -8,6 +8,6 @@ namespace Core.Models
 {
     public class DatabaseConfig
     {
-        public string ConectionString { get; set; }
+        public string ConnectionString { get; set; }
     }
 }
